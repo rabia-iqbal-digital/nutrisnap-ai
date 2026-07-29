@@ -13,17 +13,57 @@ Many people struggle with understanding their daily nutrition needs, calorie req
 - **Water Intake Calculator** — daily hydration target in litres and glasses, with a visual glass counter.
 - **AI Meal Planner** — enter age, gender, height, weight, goal and available ingredients; get a meal name, calories, protein, carbs, fat and a healthy tip.
 - **Responsive** — works from small phones up to large desktops.
-- **Accessible & fast** — single-page app, no backend required to run.
+- **Accessible & fast** — single-page React application with AI API integration for personalised meal generation.
 
-   ## 🤖 AI Feature
+## 🤖 AI Feature
 
-NutriSnap AI includes an AI-powered Meal Planner that generates personalised meal suggestions based on user inputs such as age, gender, height, weight, fitness goal, and available ingredients.
+NutriSnap AI includes an AI-powered Meal Planner integrated with a Large Language Model (LLM).
 
-### AI Instructions
+The AI Meal Planner generates personalised nutrition recommendations based on:
+- User age
+- Gender
+- Height
+- Weight
+- Fitness goal
+- Available ingredients
+
+AI Workflow:
+User health profile + ingredients
+→ AI prompt generation
+→ LLM processing
+→ Structured meal plan output
+
+The generated response includes:
+- Meal recommendation
+- Estimated calories
+- Protein
+- Carbohydrates
+- Fat
+- Healthy nutrition tips
+
+The system uses evidence-based nutrition principles to provide practical and personalised meal guidance.
+## AI Nutrition Guidelines
 
 The AI nutrition engine follows evidence-based nutrition principles to suggest balanced meals with estimated calories, protein, carbohydrates, fats, and healthy recommendations.
 
 The system is designed to provide practical meal guidance while keeping recommendations personalised and user-friendly.
+
+## Project structure
+
+```
+src/
+  components/   reusable UI (Navbar, Footer, PageHeader, StatRing)
+  lib/
+    calculations
+    AI meal generation
+    nav config
+    LLM integration
+  pages/         Home, BmiPage, BmrPage, WaterPage, PlannerPage
+  App.tsx        page router
+  main.tsx       entry point
+  index.css      Tailwind + theme
+```
+
 
 ## Tech stack
 
@@ -31,6 +71,9 @@ The system is designed to provide practical meal guidance while keeping recommen
 - Vite 5
 - Tailwind CSS 3
 - lucide-react icons
+- Groq API
+- Llama 3.1 8B Instant
+- groq-sdk
 
 ## Getting started
 
@@ -47,22 +90,18 @@ npm run build
 # preview the production build
 npm run preview
 ```
+## Environment Setup
 
-The app runs entirely in the browser. The meal planner uses a built-in nutrition engine (Mifflin-St Jeor + ingredient-aware templates) so it works offline and without any API keys.
+Create a `.env` file:
 
-## Project structure
+VITE_GROQ_API_KEY=your_api_key_here
 
-```
-src/
-  components/   reusable UI (Navbar, Footer, PageHeader, StatRing)
-  lib/           calculations, meal engine, nav config
-  pages/         Home, BmiPage, BmrPage, WaterPage, PlannerPage
-  App.tsx        page router
-  main.tsx       entry point
-  index.css      Tailwind + theme
-```
+The API key is required for AI Meal Planner functionality.
+
+Never expose API keys publicly. Store API keys securely using environment variables.
 
 ## Deployment
+The application runs as a React single-page application and uses an LLM API integration for AI-powered meal generation.
 
 ### Vercel
 
